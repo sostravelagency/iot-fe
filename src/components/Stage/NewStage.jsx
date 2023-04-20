@@ -11,6 +11,9 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
+import AddIcon from '@mui/icons-material/Add';
+import NewMode from './NewMode';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -56,6 +59,7 @@ export default function NewStage() {
               </DemoContainer>
             </LocalizationProvider>
           </div>
+          <NewMode />
           </DialogContentText>
         </DialogContent>
         <DialogActions>

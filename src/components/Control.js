@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './Control.css';
-import mqtt from 'mqtt';
+// import mqtt from 'mqtt';
 
 var options = {
     protocol: "ws",
@@ -30,40 +30,40 @@ const Control = () => {
     const [soilMoistureSettingValue, setSoilMoistureSettingValue] = useState(0);
 
 
-    const mqttConnect = (host, mqttOption) => {
-        console.log('Connecting');
-        setClient(mqtt.connect(host, mqttOption));
-    };
+    // const mqttConnect = (host, mqttOption) => {
+    //     console.log('Connecting');
+    //     setClient(mqtt.connect(host, mqttOption));
+    // };
 
-    useEffect(() => {
-        if (!client) {
-            if (!isClient.current) {
-                console.log('Connect...');
-                mqttConnect(host, options);
-            }
-            isClient.current = true;
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (!client) {
+    //         if (!isClient.current) {
+    //             console.log('Connect...');
+    //             mqttConnect(host, options);
+    //         }
+    //         isClient.current = true;
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        if (client) {
-            client.on('connect', () => {
-                client.subscribe('esp8266-master/pub');
-                console.log('Connected');
-            });
-            client.on('error', (err) => {
-                console.error('Connection error: ', err);
-                client.end();
-            });
-            client.on('reconnect', () => {
-                console.log('Reconnecting');
-            });
-            client.on('message', (topic, message) => {
-                const payload = { topic, message: message.toString() };
-                onMessage(payload);
-            });
-        }
-    }, [client]);
+    // useEffect(() => {
+    //     if (client) {
+    //         client.on('connect', () => {
+    //             client.subscribe('esp8266-master/pub');
+    //             console.log('Connected');
+    //         });
+    //         client.on('error', (err) => {
+    //             console.error('Connection error: ', err);
+    //             client.end();
+    //         });
+    //         client.on('reconnect', () => {
+    //             console.log('Reconnecting');
+    //         });
+    //         client.on('message', (topic, message) => {
+    //             const payload = { topic, message: message.toString() };
+    //             onMessage(payload);
+    //         });
+    //     }
+    // }, [client]);
 
     function publishMessage(topic, message) {
         if (client) {
