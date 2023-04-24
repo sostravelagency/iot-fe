@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+// import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import AddIcon from "@mui/icons-material/Add";
@@ -18,7 +18,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function NewMode() {
+export default function NewMode(props) {
+  
+  // 1 là độ ẩm
+  // 2 là nhiệt độ
+  // 3 là ánh sáng
   const [mode, setMode] = React.useState("");
   const [open, setOpen] = React.useState(false);
 
@@ -77,7 +81,9 @@ export default function NewMode() {
           </Box>
         </DialogContent>
         <DialogActions>
-          <NewConditionMode mode={mode} />
+          {/* Thêm điều kiện */}
+          {/* Bước 2 */}
+          <NewConditionMode handleClose={handleClose} mode={mode} setMode={setMode} {...props} />
           <Button onClick={handleClose}>Đóng</Button>
         </DialogActions>
       </Dialog>

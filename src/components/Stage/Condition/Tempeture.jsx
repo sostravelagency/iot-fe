@@ -10,7 +10,7 @@ function valuetext(value) {
   return `${value}%`;
 }
 
-export default function Humility(props) {
+export default function Tempeture(props) {
   const [value, setValue] = React.useState([20, 37]);
   const [device, setDevice] = React.useState("");
   const handleChange = (event, newValue) => {
@@ -27,7 +27,7 @@ export default function Humility(props) {
     <Box sx={{ width: 300 }}>
       <br />
       <Slider
-        getAriaLabel={() => "Humility range"}
+        getAriaLabel={() => "Tempeture range"}
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
@@ -48,7 +48,7 @@ export default function Humility(props) {
             onChange={handleChangeDevice}
           >
             <MenuItem value={1}>Bơm</MenuItem>
-            <MenuItem value={2}>Quạt </MenuItem>
+            <MenuItem value={2}>Quạt</MenuItem>
             <MenuItem value={3}>Đèn</MenuItem>
           </Select>
         </FormControl>
