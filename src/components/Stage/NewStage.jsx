@@ -13,13 +13,13 @@ import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 // import AddIcon from '@mui/icons-material/Add';
 import NewMode from './NewMode';
-import { Divider, List } from '@mui/material';
+import { Divider } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function NewStage() {
+export default function NewStage(props) {
   const [open, setOpen] = React.useState(false);
   // ngày giai đoạn
   const [value, setValue] = React.useState([
@@ -121,7 +121,10 @@ export default function NewStage() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Đóng</Button>
-          <Button onClick={handleClose}>Thêm</Button>
+          <Button onClick={()=> {
+            props?.setListStage((prev)=> ([...prev, {startDate: value?.[0]?.format("DD/MM/YYYY"), endDate: value?.[1]?.format("DD/MM/YYYY")}]))
+            handleClose()
+          }}>Thêm</Button>
         </DialogActions>
       </Dialog>
     </div>

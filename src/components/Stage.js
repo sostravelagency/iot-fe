@@ -7,41 +7,32 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./Stage.css";
 import NewStage from "./Stage/NewStage";
 const Stage = () => {
-  
+  const [listStage, setListStage]= React.useState([])
+  React.useEffect(()=> {
+
+  }, [])
   return (
     <div>
       <div className="form-input">
         <div className={"wrap-stage-parent"}>
-          <NewStage />
+          <NewStage setListStage={setListStage} listStage={listStage} />
           <div className={"wrap-stage"}>
-            <Accordion>
+            {
+              listStage?.map((item, key)=>  <Accordion key={key}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Giai đoạn 1 (Từ ngày 17/04/2023 - 20/04/2023)</Typography>
+                <Typography>Giai đoạn {parseInt(key+ 1)} (Từ ngày 17/04/2023 - 20/04/2023)</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
                   
                 </Typography>
               </AccordionDetails>
-            </Accordion>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography>Giai đoạn 2 (Từ ngày 20/4/2023 - 30/4/2023)</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
+            </Accordion>)
+            }
           </div>
         </div>
       </div>
