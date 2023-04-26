@@ -14,6 +14,7 @@ import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 // import AddIcon from '@mui/icons-material/Add';
 import NewMode from './NewMode';
 import { Divider } from '@mui/material';
+import moment from 'moment';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -69,7 +70,7 @@ export default function NewStage(props) {
       return "'C'"
     }
     if(mode=== 3) {
-      return "Unknown"
+      return "Lux"
     }
   }
 
@@ -94,6 +95,7 @@ export default function NewStage(props) {
                 <DateRangePicker
                   className={"rangeo"}
                   value={value}
+                  format={"DD/MM/YYYY"}
                   onChange={(value) => setValue(value)}
                   localeText={{ start: "Từ ngày", end: "Đến ngày" }}
                 />
@@ -110,7 +112,9 @@ export default function NewStage(props) {
                 Thời gian từ: {item?.time?.timeStart} - {item?.time?.timeEnd}
               </div>
               <div>Trạng thái: {item?.state=== true ? "Bật" : "Tắt"}</div>
+              <br />
               <Divider style={{color: "#000"}} />
+              <br />
             </div>)
           }
           <div></div>
@@ -122,7 +126,10 @@ export default function NewStage(props) {
         <DialogActions>
           <Button onClick={handleClose}>Đóng</Button>
           <Button onClick={()=> {
-            props?.setListStage((prev)=> ([...prev, {startDate: value?.[0]?.format("DD/MM/YYYY"), endDate: value?.[1]?.format("DD/MM/YYYY")}]))
+            const diffInDays= moment(value?.[1]?.format("DD/MM/YYYY"), "DD/MM/YYYY").diff(moment(value?.[0]?.format("DD/MM/YYYY"), "DD/MM/YYYY"), "days")
+            console.log(diffInDays)
+            props?.setListStage((prev)=> ([...prev, {startDate: value?.[0]?.format("DD/MM/YYYY"), endDate: value?.[1]?.format("DD/MM/YYYY"), stage: stage}]))
+            setStage([])
             handleClose()
           }}>Thêm</Button>
         </DialogActions>

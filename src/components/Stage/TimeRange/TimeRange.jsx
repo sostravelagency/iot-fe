@@ -37,7 +37,7 @@ export default function TimeRange(props) {
     setValue(time)
     setStartTime(time[0].format("HH:mm:ss"))
     setEndTime(time[1].format("HH:mm:ss"))
-    console.log(time[0].format("HH:mm:ss"))
+    // console.log(time[0].format("HH:mm:ss"))
     // setValue(time);
   };
   const handleClose = () => {
@@ -86,6 +86,8 @@ export default function TimeRange(props) {
               props?.handleClose1()
               props?.handleClose()
               handleClose()
+              setValue(null)
+              props?.clearWhenComplete()
             }}>Tạo</Button>
           </DialogActions>
         </Dialog>

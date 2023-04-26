@@ -17,9 +17,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function NewConditionMode(props) {
   const [startPoint, setStartPoint]= React.useState(0)
   const [endPoint, setEndPoint]= React.useState(0)
-  // bơm: 0
-  // quạt: 1
-  // đèn: 2
+  // bơm: 1
+  // quạt: 2
+  // đèn: 3
   const [device, setDevice]= React.useState("")
 
   const [open, setOpen] = React.useState(false);
@@ -31,6 +31,11 @@ export default function NewConditionMode(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const clearWhenComplete= ()=> {
+    setDevice("")
+    setStartPoint(0)
+    setEndPoint(0)
+  }
 
   return (
     <div>
@@ -75,7 +80,7 @@ export default function NewConditionMode(props) {
         <DialogActions>
           {/* Chọn thời gian kích hoạt thiết bị */}
           {/* Bước 4 */}
-          <TimeRange handleClose1={props?.handleClose} handleClose={handleClose} {...props} startPoint={startPoint} endPoint={endPoint} device={device} {...props} />
+          <TimeRange clearWhenComplete={clearWhenComplete} handleClose1={props?.handleClose} handleClose={handleClose} {...props} startPoint={startPoint} endPoint={endPoint} device={device} {...props} />
           <Button onClick={handleClose}>Đóng</Button>
         </DialogActions>
       </Dialog>
